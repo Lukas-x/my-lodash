@@ -1,12 +1,11 @@
 {
   "name": "my-lodash",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
-  "main": "chunk.js",
+  "main": "",
   "scripts": {
-    "start": "node src/chunk.js",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+    "start": "ts-node src/property.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,16 +15,37 @@
     "@types/lodash": "^4.14.173",
     "@types/node": "^16.9.6",
     "jest": "^26.0.1",
-    "jest-cli": "^26.0.1",
     "lodash": "^4.17.21",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "ts-jest": "^26.4.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
   },
   "jest": {
     "testTimeout": 15000,
-    "transform": {},
     "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts)$": "ts-jest"
+    },
     "testMatch": [
-      "**/*.spec.(js)"
-    ]
+      "**/*.spec.(ts|js)"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.json"
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(ts|js)": "eslint --cache"
   }
 }
